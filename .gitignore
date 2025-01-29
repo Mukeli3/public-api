@@ -1,0 +1,5 @@
+# venv
+venv-public-api/
+
+# Byte-compiled
+__pycache__/
