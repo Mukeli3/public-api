@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 import pytz
 from flask import jsonify, request, Blueprint
 from datetime import datetime
