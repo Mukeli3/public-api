@@ -1,18 +1,25 @@
 #!/usr/bin/python3
 import pytz
-from flask import jsonify, request, Blueprint
+from flask import request, Blueprint, Response
 from datetime import datetime
+import json
+from dotenv import load_dotenv
+import os
+
+
+load_dotenv()
 
 main = Blueprint('main',  __name__)
 
 @main.route('/api/info', methods=['GET'])
 def get_info():
-    email = request.args.get('email', 'your-email@example.com')
-    github_url = request.args.get('github_url', 'https://github.com/yourusername/your-repo')
-
-    response = {
-            "email": email,
-            #"current_datetime": datetime.now(pytz.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
-            "github_url": github_url
+    data = {
+            "email": os.getenv('EMAIL', 'your-email@example.com'),
+            "current_datetime": datetime.now(pytz.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+            "github_url": os.getenv('GITHUB_URL', 'https://github.com/yourusername/your-repo')
             }
-    return jsonify(response), 200
+    response = Response(
+        json.dumps(data, sort_keys=False),
+        mimetype='application/json'
+    )
+    return response
