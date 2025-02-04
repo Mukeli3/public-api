@@ -11,6 +11,13 @@ load_dotenv()
 
 main = Blueprint('main',  __name__)
 
+@main.route('', methods=['GET'])
+def home():
+
+    return {
+        message: "Welcome to Public API"
+    }
+
 @main.route('/api/info', methods=['GET'])
 def get_info():
     data = {
