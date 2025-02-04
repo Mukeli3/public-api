@@ -15,7 +15,7 @@ main = Blueprint('main',  __name__)
 def home():
 
     return {
-        message: "Welcome to Public API"
+        "message": "Welcome to Public API"
     }
 
 @main.route('/api/info', methods=['GET'])
